@@ -31,19 +31,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">Competidores</a>
+              <a class="nav-link" href="listagem_dos_competidores.php">Competidores</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Ranking</a>
+              <a class="nav-link" href="ranking.php">Ranking</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Detalhes
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">dos Competidores</a></li>
+                <li><a class="dropdown-item" href="detalhes_dos_competidores.php">dos Competidores</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">do Projeto</a></li>
+                <li><a class="dropdown-item" href="detalhes_do_projeto.php">do Projeto</a></li>
               </ul>
             </li>
           </ul>
