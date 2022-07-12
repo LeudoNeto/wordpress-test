@@ -87,16 +87,16 @@
 
         <div class="col-lg-7 text-center">
           <h1 style="padding: 0.5em; padding-bottom: 0;">Todas as partidas serão transmitidas AO VIVO</h1>
-          <a href="https://www.twitch.tv"><button type="button" class="btn btn-lg btn-outline-primary" style="margin-top: 1em; margin-bottom: 1em; color: rgb(100, 65, 165); border-color: purple;">TWITCH</button><br></a>
+          <a href="https://www.twitch.tv"><button type="button" class="btn btn-lg btn-outline-primary" style="margin-top: 1em; margin-bottom: 1em; --bs-btn-color: rgb(100, 65, 165); --bs-btn-border-color: purple; --bs-btn-hover-bg: rgb(100, 65, 165); --bs-btn-hover-color: white; --bs-btn-hover-border-color: rgb(100, 65, 165);">TWITCH</button><br></a>
           <a href="https://www.youtube.com"><button type="button" class="btn btn-lg btn-outline-danger" style="margin-top: 1em; margin-bottom: 1em;">YOU TUBE</button></a>
         </div>
       </div>
     </div>
 
       <div class="container-fluid p-5 bg-light text-center" style="margin-top: 1em;">
-          <button style="margin-top: 1em; margin-bottom: 1em;" type="button" class="btn btn-lg btn-primary">Listagem dos Competidores</button>
-          <br><button style="margin-top: 1em; margin-bottom: 1em;" type="button" class="btn btn-lg btn-success">Detalhes dos competidores</button>
-          <br><button style="margin-top: 1em; margin-bottom: 1em;" type="button" class="btn btn-lg btn-warning">Ranking</button>
+          <a href="listagem_dos_competidores.php"><button style="margin-top: 1em; margin-bottom: 1em;" type="button" class="btn btn-lg btn-primary">Listagem dos Competidores</button></a>
+          <a href="detalhes_dos_competidores.php"><br><button style="margin-top: 1em; margin-bottom: 1em;" type="button" class="btn btn-lg btn-success">Detalhes dos competidores</button></a>
+          <a href="ranking.php"><br><button style="margin-top: 1em; margin-bottom: 1em;" type="button" class="btn btn-lg btn-warning">Ranking</button></a>
       </div>
 
       <script>
