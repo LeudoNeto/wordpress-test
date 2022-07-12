@@ -65,7 +65,7 @@
         </div>
 
         <div class="col-lg-5 text-center">
-          <img src="imagem_dos_competidores/<?php print($id) ?>.png" height="400em">
+          <img src="imagem_dos_competidores/<?php print($id) ?>.png" height="400">
         </div>
       </div>
     </div>

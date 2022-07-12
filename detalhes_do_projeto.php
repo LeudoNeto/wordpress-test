@@ -22,6 +22,9 @@
             <li class="nav-item">
               <a class="nav-link" href="listagem_dos_competidores.php">Competidores</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ranking.php">Ranking</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Detalhes
@@ -35,5 +38,10 @@
       </div>
     </nav>
 
+    <div class="row container p-5 bg-light">
+      <h1>Website produzido em razão do teste para a vaga Estágio Wordpress do Grupo Communicatti.</h1>
+      <h2>O repositório com o projeto por inteiro pode ser encontrado em: <a href="https://github.com/LeudoNeto/wordpress-test">LeudoNeto/wordpress-test<a></h2>
+    </div>
+    <?php ?>
   </body>
 </html>
