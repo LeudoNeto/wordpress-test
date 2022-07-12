@@ -6,10 +6,6 @@
     <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="table.css" rel="stylesheet">
-    <style>
-
-    </style>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -44,7 +40,7 @@
 
     <div class="container p-5 less-opacity text-center" style="margin-top: 1em;">
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Pesquisar por nome" aria-label="Search">
+            <input name="name" class="form-control me-2" type="search" placeholder="Pesquisar por nome" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Pesquisar</button>
         </form>
     </div>
@@ -90,6 +86,15 @@
         ?>
         </tbody>
     </table>
+
+    <?php
+    
+     if ($name !== null)
+     {
+       print('<div class="text-center"><a href="listagem_dos_competidores.php"><button type="button" class="btn btn-outline-danger" style="margin-top: 2em; margin-bottom: 3em;">Limpar Pesquisa</button></a></div>');
+     }
+
+    ?>
 
   </body>
 </html>

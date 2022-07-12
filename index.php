@@ -104,6 +104,7 @@
         $('html, body').animate({scrollTop:600});
         });
       </script>
+      <?php ?>
 
   </body>
 </html>

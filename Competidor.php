@@ -22,7 +22,7 @@ class Competidor
         $this->name = $name;
     }
 
-    public function getName() :string
+    public function getName()
     {
         return $this->name;
     }
@@ -55,7 +55,15 @@ class Competidor
     public function readByName() :array
     {
         $con = $this->connection();
-        if ($this->getId() === 0)
+        if ($this->getName() !== null)
+        {
+            $stmt = $con->prepare("SELECT * FROM competidores WHERE name LIKE :_name ORDER BY name");
+            if ($stmt->execute([':_name' => '%'.$this->getName().'%']))
+            {
+                return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            }
+        }
+        else if ($this->getId() === 0)
         {
             $stmt = $con->prepare("SELECT * FROM competidores ORDER BY name");
             if ($stmt->execute())
@@ -79,22 +87,10 @@ class Competidor
     public function readByPoints() :array
     {
         $con = $this->connection();
-        if ($this->getId() === 0)
+        $stmt = $con->prepare("SELECT * FROM competidores ORDER BY points DESC");
+        if ($stmt->execute())
         {
-            $stmt = $con->prepare("SELECT * FROM competidores ORDER BY points");
-            if ($stmt->execute())
-            {
-                return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            }
-        }
-        else if ($this->getId() > 0)
-        {
-            $stmt = $con->prepare("SELECT * FROM competidores WHERE id = :_id");
-            $stmt->bindValue("_id", $this->getId(), \PDO::PARAM_INT);
-            if ($stmt->execute())
-            {
-                return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            }
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
         }
 
         return [];
