@@ -50,6 +50,29 @@
               </ul>
             </li>
           </ul>
+          <style>
+            #botao-inscricao {
+              border-color: #f1c40f;
+              color: #fff;
+              background-image: -webkit-linear-gradient(45deg, #90ee90 50%, transparent 50%);
+              background-image: linear-gradient(45deg, #90ee90 50%, transparent 50%);
+              background-position: 100%;
+              background-size: 400%;
+              -webkit-transition: 0.5s ease-in-out;
+              transition: 0.5s ease-in-out;
+            }
+            #botao-inscricao:hover {
+              background-position: 0;
+            }
+          </style>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="editar_inscricao.php">Edite sua inscrição</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="inscricao.php" id="botao-inscricao">Inscreva-se!</a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
