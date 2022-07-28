@@ -66,7 +66,7 @@
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Descriçãp</th>
+                <th>Descrição</th>
                 <th>Foto</th>
                 <th>Pontos</th>
             </tr>
