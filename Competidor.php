@@ -57,7 +57,7 @@ class Competidor
         $con = $this->connection();
         if ($this->getName() !== null)
         {
-            $stmt = $con->prepare("SELECT * FROM competidores WHERE name LIKE :_name ORDER BY name");
+            $stmt = $con->prepare("SELECT * FROM wp_competidores WHERE name LIKE :_name ORDER BY name");
             if ($stmt->execute([':_name' => '%'.$this->getName().'%']))
             {
                 return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -65,7 +65,7 @@ class Competidor
         }
         else if ($this->getId() === 0)
         {
-            $stmt = $con->prepare("SELECT * FROM competidores ORDER BY name");
+            $stmt = $con->prepare("SELECT * FROM wp_competidores ORDER BY name");
             if ($stmt->execute())
             {
                 return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -73,7 +73,7 @@ class Competidor
         }
         else if ($this->getId() > 0)
         {
-            $stmt = $con->prepare("SELECT * FROM competidores WHERE id = :_id");
+            $stmt = $con->prepare("SELECT * FROM wp_competidores WHERE id = :_id");
             $stmt->bindValue("_id", $this->getId(), \PDO::PARAM_INT);
             if ($stmt->execute())
             {
@@ -87,13 +87,31 @@ class Competidor
     public function readByPoints() :array
     {
         $con = $this->connection();
-        $stmt = $con->prepare("SELECT * FROM competidores ORDER BY points DESC");
+        $stmt = $con->prepare("SELECT * FROM wp_competidores ORDER BY points DESC");
         if ($stmt->execute())
         {
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
         }
 
         return [];
+    }
+
+    public function create() :array
+    {
+        $con = $this->connection();
+        $stmt = $con->prepare("INSERT INTO wp_competidores VALUES (DEFAULT, :_name, :_descricao, :_points)");
+        $stmt->bindValue("_name", $this->getName(), \PDO::PARAM_STR);
+        $stmt->bindValue("_descricao", $this->getDescricao(), \PDO::PARAM_STR);
+        $stmt->bindValue("_points", random_int(1,100), \PDO::PARAM_INT);
+        if ($stmt->execute())
+        {
+            $this->setId($con->lastInsertId());
+            return $this->readByName();
+        }
+        else
+        {
+            return $stmt->errorInfo();
+        }
     }
 
 }

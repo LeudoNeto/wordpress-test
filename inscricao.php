@@ -59,7 +59,7 @@
     {
       if (!($name === '' && $descricao === '' && $foto === ''))
       {
-        echo '<h1 align="center">ERRO ao inscrever-se</h1>';
+        echo '<h1 align="center" style="margin-top: 1em;">ERRO ao inscrever-se</h1>';
         echo '<h1 align="center">Você não preencheu todos os dados</h1>';
       }
 
@@ -98,6 +98,11 @@
     }
     else
     {
+      $competidor->setName($name);
+      $competidor->setDescricao($descricao);
+      $data = $competidor->create();
+      $id = $data[0]["id"];
+
       $currentDirectory = getcwd();
       $uploadDirectory = "/imagem_dos_competidores/";
 
@@ -105,7 +110,7 @@
 
       $fileExtensionsAllowed = ['jpeg','jpg','png'];
 
-      $fileName = "51.png";
+      $fileName = "$id.png";
       $fileSize = $_FILES['foto']['size'];
       $fileTmpName  = $_FILES['foto']['tmp_name'];
       $fileType = $_FILES['foto']['type'];
@@ -127,7 +132,7 @@
           $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 
           if ($didUpload) {
-          echo "The file " . basename($fileName) . " has been uploaded";
+          echo "";
           } else {
           echo "An error occurred. Please contact the administrator.";
           }
@@ -138,6 +143,23 @@
       }
 
       }
+
+      echo "<h1 align='center' style='margin-top: 1em;'>Inscrição realizada com sucesso!</h1>";
+      echo "<div class='d-flex justify-content-center' style='margin-top: 2em;'>
+      <div class='row container-fluid p-5 bg-light'>
+        <div class='col-lg-7'>
+          <h1>Nome:</h1>
+          <input class='form-control me-2' value='$name' type='search' readonly>
+          <br><h1>Descrição: </h1>
+          <textarea class='form-control me-2' style='height: 10em;' readonly>$descricao</textarea>
+
+        </div>
+
+        <div class='col-lg-5 text-center'>
+          <img src='imagem_dos_competidores/$id.png' height='400'>
+        </div>
+      </div>
+    </div>";
     }
     ?>
 
