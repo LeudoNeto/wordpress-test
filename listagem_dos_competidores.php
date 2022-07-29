@@ -102,7 +102,7 @@
             print("<td>".$line["name"]."</td>");
             print("<td><a href='imagem_dos_competidores/$line_id.png'>ver foto</a></td>");
             print("<td>".$line["points"]."</td>");
-            print("<td><form action='perfil_do_competidor.php'><button style='border: 0px solid black; cursor: pointer;' name='id' value='$line_id' class='edit-icon'><img height='20' src='img/competidor_icon.png' ></button></form><td>");
+            print("<td><form action='perfil_do_competidor.php'><button style='border: 0px solid black; cursor: pointer;' name='id' value='$line_id' class='edit-icon'><img height='20' src='img/competidor_icon.png' ></button></form></td>");
             print("</tr>");
         }
 

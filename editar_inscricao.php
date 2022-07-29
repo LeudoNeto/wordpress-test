@@ -61,5 +61,69 @@
       </div>
     </nav>
 
+    <?php
+      require_once "Competidor.php";
+
+      $competidor = new Competidor;
+
+      $id = $_REQUEST["id"] ?? 0;
+      $name = $_REQUEST["name"] ?? '';
+      $descricao = $_REQUEST["descricao"] ?? '';
+      $foto = $_FILES['foto']['name'] ?? '';
+      $fn = $_REQUEST["fn"] ?? '';
+
+      if ($id === 0)
+      {
+        echo'<div class="container p-5 less-opacity text-center" style="margin-top: 1em;">
+            <form class="d-flex" role="search">
+                <input name="name" class="form-control me-2" type="search" placeholder="Pesquisar por nome" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </form>
+        </div>';
+        $competidor->setName($name);
+        $data = $competidor->readByName();
+
+        echo '<table class="styled-table">
+          <thead>
+              <tr>
+                  <th>Nome</th>
+                  <th>Imagem</th>
+                  <th>Editar</th>
+                  <th>Deletar</th>
+              </tr>
+          </thead>
+          <tbody>';
+
+          foreach ($data as $line)
+          {
+              $line_id = $line["id"];
+              print("<tr>");
+              print("<td>".$line["name"]."</td>");
+              print("<td><img src='imagem_dos_competidores/$line_id.png' height='80'></td>");
+              print("<td><form><button style='border: 0px solid black; cursor: pointer;' name='id' value='$line_id'><img height='20' src='img/edit.png'><input type='hidden' name='fn' value='edit'></button></form></td>");
+              print("<td><form><button style='border: 0px solid black; cursor: pointer;' name='id' value='$line_id'><img height='20' src='img/delete.png'><input type='hidden' name='fn' value='delete'></button></form></td>");
+              print("</tr>");
+          }
+          echo '</tbody>
+          </table>';
+
+          if ($name !== '')
+          {
+          print('<div class="text-center"><a href="editar_inscricao.php"><button type="button" class="btn btn-outline-danger" style="margin-top: 2em; margin-bottom: 3em;">Limpar Pesquisa</button></a></div>');
+          }
+      }
+      else
+      {
+        if ($fn == 'edit')
+        {
+          // formulário de edição
+        }
+        else if ($fn == 'delete')
+        {
+          //deletar
+        }
+      }
+    ?>
+
   </body>
 </html>
