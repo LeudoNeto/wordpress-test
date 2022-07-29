@@ -62,7 +62,6 @@
     </nav>
 
     <div class="row container p-5 bg-light">
-      <h1>Website produzido em razão do teste para a vaga Estágio Wordpress do Grupo Communicatti.</h1>
       <h2>O repositório com o projeto por inteiro pode ser encontrado em: <a href="https://github.com/LeudoNeto/wordpress-test">LeudoNeto/wordpress-test<a></h2>
     </div>
     <?php ?>

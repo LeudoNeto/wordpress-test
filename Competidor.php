@@ -114,6 +114,33 @@ class Competidor
         }
     }
 
+    public function delete() :array
+    {
+        $competidor = $this->readByName();
+        $con = $this->connection();
+        $stmt = $con->prepare("DELETE FROM wp_competidores WHERE id = :_id");
+        $stmt->bindValue("_id", $this->getId(), \PDO::PARAM_INT);
+        if ($stmt->execute())
+        {
+            return $competidor;
+        }
+        return [];
+    }
+
+    public function update() :array
+    {
+        $con = $this->connection();
+        $stmt = $con->prepare("UPDATE wp_competidores SET name = :_name, descricao = :_descricao WHERE id = :_id");
+        $stmt->bindValue("_name", $this->getName(), \PDO::PARAM_STR);
+        $stmt->bindValue("_descricao", $this->getDescricao(), \PDO::PARAM_STR);
+        $stmt->bindValue("_id", $this->getId(), \PDO::PARAM_INT);
+        if ($stmt->execute())
+        {
+            return $this->readByName();
+        }
+        return [];
+    }
+
 }
 
 ?>

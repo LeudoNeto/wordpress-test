@@ -114,13 +114,145 @@
       }
       else
       {
+        $competidor->setId($id);
         if ($fn == 'edit')
         {
-          // formulário de edição
+          $foto = $_FILES['foto']['name'] ?? '';
+          if ($name === '' || $descricao === '' || $foto === '')
+          {
+            if (!($name === '' && $descricao === '' && $foto === ''))
+            {
+              echo "<h1 align='center' style='margin-top: 1em;'>ERRO, preencha todos os dados por favor</h1>";
+            }
+          $data = $competidor->readByName();
+          $name = $data[0]['name'];
+          echo "<h1 align='center' style='margin-top: 1em;'>Editando inscrição de $name</h1>";
+
+          echo'<form method="post" enctype="multipart/form-data">
+                <div class="d-flex justify-content-center" style="margin-top: 2em;">
+                  <div class="row container-fluid p-5 bg-light">
+                    <div class="col-lg-7">
+                      <h1>Nome:</h1>
+                      <input class="form-control me-2" name="name">
+                      <br><h1>Descrição: </h1>
+                      <textarea class="form-control me-2" style="height: 10em;" name="descricao"></textarea>
+
+                    </div>
+
+                    <script type="text/javascript">
+                        function showPreview(event){
+                          if(event.target.files.length > 0){
+                            var src = URL.createObjectURL(event.target.files[0]);
+                            var preview = document.getElementById("image-preview");
+                            preview.src = src;
+                            preview.style.display = "block";
+                          }
+                        }
+                    </script>
+
+                    <div class="col-lg-5 p-3 text-center">
+                      <img id="image-preview" height="300" src="img/pictemplate.png" style="margin-bottom: 1em; margin-left:auto; margin-right:auto;">
+                      <input type="file" class="form-control" name="foto" onchange="showPreview(event)"/>
+                    </div>
+                    <div style="text-align: center; margin-top: 2em;">
+                      <input type="submit" value="Editar Inscrição" name="submit" class="btn btn-warning">
+                    </div>
+                  </div>
+                </div>
+              </form>';
+          }
+          else
+          {
+            $competidor->setName($name);
+            $competidor->setDescricao($descricao);
+      
+            $data = $competidor->update();
+
+            unlink("imagem_dos_competidores/$id.png");
+
+            $currentDirectory = getcwd();
+            $uploadDirectory = "/imagem_dos_competidores/";
+
+            $errors = [];
+
+            $fileExtensionsAllowed = ['jpeg','jpg','png'];
+
+            $fileName = "$id.png";
+            $fileSize = $_FILES['foto']['size'];
+            $fileTmpName  = $_FILES['foto']['tmp_name'];
+            $fileType = $_FILES['foto']['type'];
+            $fileExtension = strtolower(end(explode('.',$fileName)));
+
+            $uploadPath = $currentDirectory . $uploadDirectory . basename($fileName); 
+
+            if (isset($_POST['submit'])) {
+
+            if (! in_array($fileExtension,$fileExtensionsAllowed)) {
+                $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file";
+            }
+
+            if ($fileSize > 4000000) {
+                $errors[] = "File exceeds maximum size (4MB)";
+            }
+
+            if (empty($errors)) {
+                $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
+
+                if ($didUpload) {
+                echo "";
+                } else {
+                echo "An error occurred. Please contact the administrator.";
+                }
+            } else {
+                foreach ($errors as $error) {
+                echo $error . "These are the errors" . "\n";
+                }
+            }
+
+            } 
+
+            echo "<h1 align='center' style='margin-top: 1em;'>Inscrição alterada com sucesso.</h1>";
+
+            echo "<div class='d-flex justify-content-center' style='margin-top: 2em;'>
+                    <div class='row container-fluid p-5 bg-light'>
+                      <div class='col-lg-7'>
+                        <h1>Nome:</h1>
+                        <input class='form-control me-2' value='$name' type='search' readonly>
+                        <br><h1>Descrição: </h1>
+                        <textarea class='form-control me-2' style='height: 10em;' readonly>$descricao</textarea>
+
+                      </div>
+
+                      <div class='col-lg-5 text-center'>
+                        <img src='imagem_dos_competidores/$id.png' height='400'>
+                      </div>
+                    </div>
+                  </div>";
+          }
         }
         else if ($fn == 'delete')
         {
-          //deletar
+          $data = $competidor->delete();
+          $name = $data[0]['name'];
+          $descricao = $data[0]['descricao'];
+          echo '<h1 align="center" style="margin-top: 1em;">Inscrição deletada com sucesso.</h1>';
+
+          echo "<div class='d-flex justify-content-center' style='margin-top: 2em;'>
+                  <div class='row container-fluid p-5 bg-light'>
+                    <div class='col-lg-7'>
+                      <h1>Nome:</h1>
+                      <input class='form-control me-2' value='$name' type='search' readonly>
+                      <br><h1>Descrição: </h1>
+                      <textarea class='form-control me-2' style='height: 10em;' readonly>$descricao</textarea>
+
+                    </div>
+
+                    <div class='col-lg-5 text-center'>
+                      <img src='imagem_dos_competidores/$id.png' height='400'>
+                    </div>
+                  </div>
+                </div>";
+            
         }
       }
     ?>
