@@ -1,8 +1,8 @@
 # Website que simula a divulgação de um torneio de Tênis de Mesa
 
-para acessar o site: https://teste-wordpress.leudoneto.repl.co/
+para acessar o site: https://competicao-esportiva.leudoneto.repl.co/
 
-## Testes de funcionamento
+## Testes de funcionamento (ainda vou fazer os novos pro CREATE, UPDATE e DELETE)
 
 ### Página inicial:
 
